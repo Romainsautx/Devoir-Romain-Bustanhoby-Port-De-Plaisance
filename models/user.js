@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Ajoute la date de création
+    timestamps: true,
   },
 );
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config(); // Pour lire le fichier .env
+require("dotenv").config();
 
 const app = express();
 
@@ -26,3 +26,8 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Serveur en cours d'exécution sur le port ${PORT}`);
 });
+
+// IMPORTATION DES ROUTES
+const catwayRoutes = require("./routes/catwayRoutes");
+
+app.use("/catways", catwayRoutes);
