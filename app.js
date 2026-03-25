@@ -30,4 +30,8 @@ app.listen(PORT, () => {
 // IMPORTATION DES ROUTES
 const catwayRoutes = require("./routes/catwayRoutes");
 
+// --- IMPORTATION DES ROUTES RESERVATIONS ---
+const reservationRoutes = require("./routes/reservationRoutes");
+app.use("/reservations", reservationRoutes);
+
 app.use("/catways", catwayRoutes);
