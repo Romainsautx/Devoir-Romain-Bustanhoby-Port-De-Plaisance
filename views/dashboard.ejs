@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - Port Russell</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main class="dashboard-main">
+      <h2>Tableau de bord</h2>
+      <p>Aujourd'hui, nous sommes le : <strong id="dateDisplay"></strong></p>
+
+      <div class="dashboard-welcome">
+        <h3>Bienvenue dans l'interface d'administration</h3>
+        <p>Utilisez le menu en haut pour gérer les installations du port.</p>
+      </div>
+    </main>
+
+    <script src="/dashboard.js"></script>
+    <script>
+      document.getElementById("dateDisplay").textContent =
+        new Date().toLocaleDateString("fr-FR");
+    </script>
+  </body>
+</html>

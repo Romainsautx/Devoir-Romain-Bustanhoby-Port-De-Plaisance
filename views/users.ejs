@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Utilisateurs</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main class="dashboard-main">
+      <h2>👤 Gestion du Personnel</h2>
+
+      <section class="admin-form">
+        <h3>Créer un compte Agent</h3>
+        <form id="addUserForm">
+          <input type="text" id="newUsername" placeholder="Nom" required />
+          <input type="email" id="newEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="newPassword"
+            placeholder="Mot de passe"
+            required
+          />
+          <button type="submit" class="dashboard-btn">Ajouter l'agent</button>
+        </form>
+      </section>
+
+      <ul id="users-list" class="data-list"></ul>
+    </main>
+    <script src="/dashboard.js"></script>
+  </body>
+</html>

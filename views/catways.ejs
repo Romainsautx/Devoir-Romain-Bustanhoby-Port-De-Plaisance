@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gestion des Catways</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main class="dashboard-main">
+      <h2>🚤 Liste des Catways</h2>
+
+      <section class="admin-form">
+        <h3>Ajouter un nouveau Catway</h3>
+        <form id="addCatwayForm">
+          <input
+            type="number"
+            id="catwayNumber"
+            placeholder="Numéro"
+            required
+          />
+          <select id="type">
+            <option value="long">Long</option>
+            <option value="short">Court</option>
+          </select>
+          <input
+            type="text"
+            id="catwayState"
+            placeholder="État du catway"
+            required
+          />
+          <button type="submit" class="dashboard-btn">Créer</button>
+        </form>
+      </section>
+
+      <button id="loadCatwaysBtn" class="dashboard-btn">
+        Rafraîchir la liste
+      </button>
+      <ul id="catways-list" class="data-list"></ul>
+    </main>
+
+    <script src="/dashboard.js"></script>
+  </body>
+</html>

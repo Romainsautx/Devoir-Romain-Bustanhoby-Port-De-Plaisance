@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Réservations</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main class="dashboard-main">
+      <h2>📅 Gestion des Réservations</h2>
+
+      <section class="admin-form">
+        <h3>Enregistrer une réservation</h3>
+        <form id="addResaForm">
+          <input
+            type="number"
+            id="resaCatwayNumber"
+            placeholder="N° Catway"
+            required
+          />
+          <input
+            type="text"
+            id="clientName"
+            placeholder="Nom Client"
+            required
+          />
+          <input type="text" id="boatName" placeholder="Nom Bateau" required />
+          <label>Du :</label> <input type="date" id="checkIn" required />
+          <label>Au :</label> <input type="date" id="checkOut" required />
+          <button type="submit" class="dashboard-btn">Réserver</button>
+        </form>
+      </section>
+
+      <ul id="reservations-list" class="data-list"></ul>
+    </main>
+    <script src="/dashboard.js"></script>
+  </body>
+</html>

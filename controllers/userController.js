@@ -79,7 +79,17 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// 6. CONNECTER un utilisateur (Login)
+/**
+ * Authentifie un utilisateur (agent) en vérifiant son email et son mot de passe.
+ * @async
+ * @function authenticateUser
+ * @param {Object} req - L'objet de requête Express.
+ * @param {Object} req.body - Le corps de la requête.
+ * @param {String} req.body.email - L'adresse email de l'utilisateur.
+ * @param {String} req.body.password - Le mot de passe en clair à vérifier.
+ * @param {Object} res - L'objet de réponse Express.
+ * @returns {Promise<void>} Renvoie un statut 200 et les infos de l'utilisateur si succès, sinon une erreur 401.
+ */
 exports.authenticateUser = async (req, res) => {
   try {
     const { email, password } = req.body;

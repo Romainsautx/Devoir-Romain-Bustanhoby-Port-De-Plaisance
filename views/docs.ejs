@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Documentation API - Port Russell</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main class="dashboard-main">
+      <h2>Documentation technique du projet</h2>
+      <p>
+        Ce document liste l'ensemble des routes disponibles pour
+        l'administration du Port Russell.
+      </p>
+
+      <section class="admin-form">
+        <h3>🖼️ Interface Web (Navigation)</h3>
+        <p>Ces routes affichent les pages visuelles pour les agents du port.</p>
+        <table style="width: 100%; text-align: left; border-collapse: collapse">
+          <tr style="border-bottom: 1px solid #ddd">
+            <th style="padding: 10px">Route</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/</code></td>
+            <td>Accueil et Connexion</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/dashboard</code></td>
+            <td>Tableau de bord principal</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/catways-list</code></td>
+            <td>Interface de gestion des Catways</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/reservations-list</code></td>
+            <td>Interface de gestion des Réservations</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/users-list</code></td>
+            <td>Interface de gestion du Personnel</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px"><code>/docs</code></td>
+            <td>Cette page de documentation</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="admin-form">
+        <h3>⚙️ API Rest (Données)</h3>
+
+        <h4>👤 Utilisateurs</h4>
+        <ul>
+          <li>
+            <code>POST /users/authenticate</code> : Login de l'utilisateur.
+          </li>
+          <li><code>POST /users</code> : Inscription d'un nouvel agent.</li>
+          <li><code>GET /users</code> : Récupérer la liste des agents.</li>
+        </ul>
+
+        <h4>🚤 Catways</h4>
+        <ul>
+          <li><code>GET /catways</code> : Lister tous les catways.</li>
+          <li>
+            <code>GET /catways/:id</code> : Détails d'un catway (ID MongoDB).
+          </li>
+          <li><code>POST /catways</code> : Créer un catway.</li>
+          <li><code>PUT /catways/:id</code> : Modifier un catway.</li>
+          <li><code>DELETE /catways/:id</code> : Supprimer un catway.</li>
+        </ul>
+
+        <h4>📅 Réservations</h4>
+        <ul>
+          <li>
+            <code>GET /catways/:id/reservations</code> : Lister les réservations
+            d'un catway.
+          </li>
+          <li>
+            <code>POST /catways/:id/reservations</code> : Créer une réservation.
+          </li>
+          <li>
+            <code>DELETE /catways/:id/reservations/:id_res</code> : Supprimer
+            une réservation.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="/dashboard.js"></script>
+  </body>
+</html>
