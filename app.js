@@ -4,8 +4,9 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware pour autoriser Express à lire les données envoyées en JSON (correction ici avec "use")
 app.use(express.json());
+
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 // Connexion à la base de données MongoDB
@@ -14,7 +15,6 @@ mongoose
   .then(() => console.log("✅ Connecté avec succès à MongoDB !"))
   .catch((error) => console.error("❌ Erreur de connexion à MongoDB :", error));
 
-// Une petite route de test pour voir si le serveur répond
 app.get("/", (req, res) => {
   res
     .status(200)
@@ -30,8 +30,12 @@ app.listen(PORT, () => {
 // IMPORTATION DES ROUTES
 const catwayRoutes = require("./routes/catwayRoutes");
 
-// --- IMPORTATION DES ROUTES RESERVATIONS ---
+// IMPORTATION DES ROUTES RESERVATIONS
 const reservationRoutes = require("./routes/reservationRoutes");
 app.use("/reservations", reservationRoutes);
 
 app.use("/catways", catwayRoutes);
+
+// IMPORTATION DES ROUTES UTILISATEURS
+const userRoutes = require("./routes/userRoutes");
+app.use("/users", userRoutes);

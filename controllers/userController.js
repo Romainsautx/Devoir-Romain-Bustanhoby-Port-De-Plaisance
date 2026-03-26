@@ -23,31 +23,15 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// 3. CRÉER un utilisateur (Avec cryptage du mot de passe !)
+// 3. CRÉER un utilisateur
 exports.createUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword
-    });
-
-    const savedUser = await newUser.save();
-    
-    savedUser.password = undefined;
-    res.status(201).json(savedUser);
-  } catch (error) {
-    res.status(400).json({ message: "Erreur de création", error: error.message });
-  }
-};
+    const newUser = new User(req.body);
 
     const savedUser = await newUser.save();
 
     savedUser.password = undefined;
+
     res.status(201).json(savedUser);
   } catch (error) {
     res
@@ -92,5 +76,33 @@ exports.deleteUser = async (req, res) => {
     res
       .status(500)
       .json({ message: "Erreur de suppression", error: error.message });
+  }
+};
+
+// 6. CONNECTER un utilisateur (Login)
+exports.authenticateUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).select("+password");
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "Email ou mot de passe incorrect" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ message: "Email ou mot de passe incorrect" });
+    }
+
+    user.password = undefined;
+    res.status(200).json({ message: "Connexion réussie !", user });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la connexion", error: error.message });
   }
 };
